@@ -1,18 +1,20 @@
+// Example candidates.service.ts
 import { Injectable } from '@nestjs/common';
-import { CreateCandidateDto } from './dto/create-candidate.dto';
 
 @Injectable()
 export class CandidatesService {
-  private candidates: CreateCandidateDto[] = []; // In-memory store
+  private candidates = [
+    { id: 1, name: 'Alice', votes: 0 },
+    { id: 2, name: 'Bob', votes: 0 },
+  ];
 
-  // Returns all candidates
-  findAll(): CreateCandidateDto[] {
+  getAll() {
     return this.candidates;
   }
 
-  // Adds a new candidate
-  create(candidate: CreateCandidateDto): CreateCandidateDto {
-    this.candidates.push(candidate);
+  vote(id: number) {
+    const candidate = this.candidates.find(c => c.id === id);
+    if (candidate) candidate.votes += 1;
     return candidate;
   }
 }
