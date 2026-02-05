@@ -1,18 +1,33 @@
-// Example candidates.controller.ts
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
 import { CandidatesService } from './candidates.service';
+import { Candidate } from './entities/candidate.entity';
 
 @Controller('candidates')
 export class CandidatesController {
   constructor(private readonly candidatesService: CandidatesService) {}
 
   @Get()
-  getAllCandidates() {
-    return this.candidatesService.getAll();
+  getAll(): Promise<Candidate[]> {
+    return this.candidatesService.findAll();
   }
 
-  @Post('vote/:id')
-  vote(@Param('id') id: string) {
-    return this.candidatesService.vote(Number(id));
+  @Get(':id')
+  getOne(@Param('id') id: number) {
+    return this.candidatesService.findOne(id);
+  }
+
+  @Post()
+  create(@Body() data: Partial<Candidate>) {
+    return this.candidatesService.create(data);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: number, @Body() data: Partial<Candidate>) {
+    return this.candidatesService.update(id, data);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.candidatesService.remove(id);
   }
 }
