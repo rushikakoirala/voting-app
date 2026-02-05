@@ -10,26 +10,35 @@ This project demonstrates NestJS fundamentals like Modules, Controllers, Service
 - Create and list candidates  
 - Input validation using DTOs (`class-validator`)  
 - PostgreSQL database integration  
-- Separation of concerns: Service vs Controller  
+- Separation of concerns: Service vs Controller 
+ 
 
 ---
 
 ## Project Structure
 
 voting-app/
-├─ src/
-│ ├─ candidates/
-│ │ ├─ dto/
-│ │ │ └─ create-candidate.dto.ts
-│ │ ├─ candidates.controller.ts
-│ │ ├─ candidates.service.ts
-│ │ └─ candidates.module.ts
-│ ├─ app.module.ts
-│ └─ main.ts
-├─ .env
-├─ package.json
-├─ tsconfig.json
-└─ README.md
+├─ Backend/
+│  ├─ src/
+│  │  ├─ candidates/
+│  │  │  ├─ dto/
+│  │  │  │  ├─ create-candidate.dto.ts
+│  │  │  │  └─ update-candidate.dto.ts
+│  │  │  ├─ candidates.controller.ts
+│  │  │  ├─ candidates.service.ts
+│  │  │  └─ candidates.module.ts
+│  │  ├─ app.controller.ts
+│  │  ├─ app.service.ts
+│  │  ├─ app.module.ts
+│  │  └─ main.ts
+│  ├─ .env
+│  ├─ package.json
+│  └─ tsconfig.json
+├─ Frontend/
+
+
+
+
 
 ## DTOs
 PostgreSQL installed and running
@@ -47,7 +56,6 @@ Connect to the database:
 Create the candidates table:
 
 sql
-Copy code
 CREATE TABLE candidates (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -70,6 +78,19 @@ DB_NAME=voting_app
  
  For running the code
 npm run start:dev
+
+API Documentation
+Swagger API docs are available at:
+http://localhost:3000/api-docs
+You can test all endpoints directly from the Swagger UI.
+RESTful API endpoints:
+GET / – Root endpoint returning a welcome message
+GET /api/play – Test endpoint to check API health
+GET /candidates – List all candidates
+POST /candidates – Add a new candidate
+PATCH /candidates/:id/vote – Increment votes for a candidate
+GET /candidates/:id – Get a single candidate by ID
+DELETE /candidates/:id – Remove a candidate
 
 ##  Tech Stack
 
