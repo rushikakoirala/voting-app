@@ -12,6 +12,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
   const config = new DocumentBuilder()
     .setTitle('Voting App API')
     .setDescription('API documentation for Candidate Voting System')
@@ -20,8 +21,10 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api-docs', app, document); 
 
   await app.listen(3000);
+  console.log(`Server running at http://localhost:3000`);
+  console.log(`Swagger docs at http://localhost:3000/api-docs`);
 }
 bootstrap();

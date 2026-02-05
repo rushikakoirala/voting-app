@@ -1,30 +1,39 @@
-# Node modules
+# ===============================
+# Node / NestJS
+# ===============================
 node_modules/
-
-# Build output
 dist/
 build/
-
-# Environment variables
-.env
-.env.*
-
-# Logs
-logs/
-*.log
 npm-debug.log*
 yarn-debug.log*
-pnpm-debug.log*
+yarn-error.log*
 
-# Coverage
-coverage/
+# ===============================
+# Environment variables
+# ===============================
+.env
+.env.*
+!.env.example
 
+# ===============================
 # OS files
+# ===============================
 .DS_Store
+Thumbs.db
 
+# ===============================
 # IDE / Editor
+# ===============================
 .vscode/
 .idea/
+*.swp
 
-# Prisma generated files
-/generated/prisma
+# ===============================
+# TypeScript
+# ===============================
+*.tsbuildinfo
+
+# ===============================
+# NestJS specific
+# ===============================
+coverage/
