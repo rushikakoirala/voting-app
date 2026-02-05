@@ -1,12 +1,15 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-@Get()
+
+  @Get()
   getRoot() {
     return { message: 'Welcome to the Voting App API!' };
   }
+  @Get('api/play')
+  getPlay() {
+    return { message: 'API is working!' };
+  }
 }
- 

@@ -15,8 +15,18 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return the welcome message', () => {
+      expect(appController.getRoot()).toEqual({
+        message: 'Welcome to the Voting App API!',
+      });
+    });
+  });
+
+  describe('play', () => {
+    it('should return API working message', () => {
+      expect(appController.getPlay()).toEqual({
+        message: 'API is working!',
+      });
     });
   });
 });
