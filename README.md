@@ -1,103 +1,223 @@
-git NestJS Voting App
+#  Voting App -- Full Stack Learning Project
 
-A simple Voting App built with **NestJS** and **PostgreSQL**.  
-This project demonstrates NestJS fundamentals like Modules, Controllers, Services, DTOs, Validation, and Database Integration with TypeORM.
+This project is a **full-stack voting application** developed as an
+academic and learning project. It demonstrates **NestJS backend
+architecture**, **database integration with ORM**, and a **React-based
+frontend**, following real-world software engineering practices.
 
----
+------------------------------------------------------------------------
 
-## Features
+##  Project Overview
 
-- Create and list candidates  
-- Input validation using DTOs (`class-validator`)  
-- PostgreSQL database integration  
-- Separation of concerns: Service vs Controller 
- 
-
----
-
-## Project Structure
-
-voting-app/
-├─ backend/
-│  ├─ src/
-│  │  ├─ candidates/
-│  │  │  ├─ dto/
-│  │  │  │  ├─ create-candidate.dto.ts
-│  │  │  │  └─ update-candidate.dto.ts
-│  │  │  ├─ candidates.controller.ts
-│  │  │  ├─ candidates.service.ts
-│  │  │  └─ candidates.module.ts
-│  │  ├─ app.controller.ts
-│  │  ├─ app.service.ts
-│  │  ├─ app.module.ts
-│  │  └─ main.ts
-│  ├─ .env
-│  ├─ package.json
-│  └─ tsconfig.json
-├─ frontend/
-
-
-
-
-
-## DTOs
-PostgreSQL installed and running
-
-Database Setup
-Open PostgreSQL shell (psql) or PgAdmin.
-
-Create the database:
-
-CREATE DATABASE voting_app;
-Connect to the database:
-
-
- voting_app
-Create the candidates table:
-
-sql
-CREATE TABLE candidates (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  votes INT DEFAULT 0
-);
-Optional: Insert sample data:
-
-INSERT INTO candidates (name, votes) VALUES
-('Alice', 0),
-('Bob', 0),
-('Charlie', 0);
-
-.env
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=admin123
-DB_NAME=voting_app
-
- 
- For running the code
-npm run start:dev
-
-API Documentation
-Swagger API docs are available at:
-http://localhost:3000/api-docs
-You can test all endpoints directly from the Swagger UI.
-RESTful API endpoints:
-GET / – Root endpoint returning a welcome message
-GET /api/play – Test endpoint to check API health
-GET /candidates – List all candidates
-POST /candidates – Add a new candidate
-PATCH /candidates/:id/vote – Increment votes for a candidate
-GET /candidates/:id – Get a single candidate by ID
-DELETE /candidates/:id – Remove a candidate
+The Voting App enables: - **Admins** to manage candidates - **Voters**
+to view candidates and cast votes
+------------------------------------------------------------------------
 
 ##  Tech Stack
 
-- **Backend Framework:** NestJS
-- **Language:** TypeScript
-- **Architecture:** Controller – Service pattern
-- **Data Storage:** In-memory (temporary)
+### Backend
 
+-   NestJS
+-   Node.js
+-   TypeScript
+-   TypeORM / Prisma
+
+### Frontend
+
+-   React
+-   JavaScript (ES6)
+-   JSX
+
+### Database
+
+-   PostgreSQL 
+
+### Tools
+
+-   NestJS CLI
+-   Git & GitHub
+
+------------------------------------------------------------------------
+
+# Phase 1: NestJS Fundamentals & Architecture
+
+## Topics Covered
+
+-   NestJS CLI
+-   Modules
+-   Controllers
+-   Providers (Services)
+-   Dependency Injection
+-   Decorators (`@Get`, `@Post`, `@Body`)
+
+## Detailed Requirements
+
+-   Initialize a NestJS project using CLI:
+    nest new voting-app
+    ```
+
+-   Create a **Candidates resource** containing:
+
+    -   Module
+    -   Controller
+    -   Service
+
+-   Implement a **service layer** that:
+
+    -   Maintains an in-memory array of candidates
+    -   Handles all business logic
+
+-   Implement a **controller layer** that:
+
+    -   Exposes REST endpoints
+    -   Delegates logic to the service
+
+## API Endpoints
+
+  Method   Endpoint      Description
+  -------- ------------- -----------------------------
+  GET      /candidates   Retrieve all candidates
+  POST     /candidates   Add a new candidate (Admin)
+
+
+### Phase 1 Deliverable
+
+-   Clean separation of routing and logic
+-   Working REST API without database
+
+------------------------------------------------------------------------
+
+#  Phase 2: Database & Validation
+
+## Topics Covered
+
+-   ORM (TypeORM )
+-   Entities
+-   DTOs (Data Transfer Objects)
+-   Validation Pipes
+-   class-validator
+
+## Detailed Requirements
+
+### Database Setup
+
+-   Configure ORM in NestJS
+-   Connect application to PostgreSQL
+-   Enable auto-sync (development only)
+
+### Entity Requirements
+
+Create a `Candidate` entity with: - `id` (Primary Key) - `name`
+(String) - `party` (String) - `voteCount` (Number, default = 0)
+
+### DTO & Validation Requirements
+
+-   Create `CreateCandidateDto`
+-   Apply validation rules:
+    -   `@IsString()`
+    -   `@IsNotEmpty()`
+-   Enable global validation pipe
+
+### Service Updates
+
+-   Replace in-memory array with database queries
+-   Implement:
+    -   Create candidate
+    -   Fetch all candidates
+    -   Increment vote count
+
+### Phase 2 Deliverable
+
+-   Persistent database storage
+-   Automatic input validation
+-   Production-ready backend structure
+
+------------------------------------------------------------------------
+
+#  Phase 3: Voter Interface (React)
+
+## Topics Covered
+
+-   Functional Components
+-   Props
+-   State management (`useState`)
+-   JSX fundamentals
+
+## Detailed Requirements
+
+### Application Setup
+
+-   Initialize React app
+
+    ``` bash
+    npx create-react-app frontend
+    ```
+
+### Component Requirements
+
+-   **CandidateCard**
+    -   Display candidate name and party
+    -   Include Vote button
+-   **VotingGrid**
+    -   Render list of candidates
+    -   Pass data via props
+
+### State Management
+
+-   Store candidate data in parent component
+-   Implement `handleVote()` function
+-   Display confirmation message: \> Thank you for voting!
+
+### Phase 3 Deliverable
+
+-   Functional UI using dummy data
+-   Component-based frontend design
+
+------------------------------------------------------------------------
+
+##  How to Run the Project
+
+### Backend
+
+``` bash
+cd backend
+npm install
+npm run start:dev
+```
+
+Backend runs at:
+
+    http://localhost:3000
+
+### Frontend
+
+``` bash
+cd frontend
+npm install
+npm start
+```
+
+Frontend runs at:
+
+    http://localhost:3001
+
+------------------------------------------------------------------------
+## Objectives
+
+-   Understand NestJS modular architecture
+-   Develop RESTful APIs
+-   Implement ORM-based database access
+-   Apply DTO-based validation
+-   Build a React voting interface
+
+## Scope of the Project
+
+-   Admin candidate management
+-   Voter-facing candidate display
+-   Secure data handling and validation
+
+## Declaration
+
+This project is developed  for **academic and educational purposes**.
 
 
