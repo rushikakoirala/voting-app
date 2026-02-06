@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CandidatesModule } from './candidates/candidates.module';
-import { PlayModule } from './play/play.module';  
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
+    
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST || 'localhost',
@@ -13,11 +16,10 @@ import { PlayModule } from './play/play.module';
       password: process.env.DB_PASS || 'admin123',
       database: process.env.DB_NAME || 'voting_app',
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: true, 
     }),
+    
     CandidatesModule,
-    PlayModule,  
   ],
 })
 export class AppModule {}
-

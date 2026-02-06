@@ -2,16 +2,16 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsEmail, IsInt, Min } from 'class-validator';
 
 export class CreateCandidateDto {
-  @ApiProperty({ example: 'Ram krishna' })
+  @ApiProperty({ example: 'John Doe' })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({ example: 'Ram@example.com' })
+  @ApiProperty({ example: 'john@example.com' })
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'public Party' })
+  @ApiProperty({ example: 'Democratic Party' })
   @IsString()
   @IsNotEmpty()
   party: string;
@@ -21,4 +21,3 @@ export class CreateCandidateDto {
   @Min(18)
   age: number;
 }
-
