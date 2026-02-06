@@ -1,4 +1,4 @@
- NestJS Voting App
+git NestJS Voting App
 
 A simple Voting App built with **NestJS** and **PostgreSQL**.  
 This project demonstrates NestJS fundamentals like Modules, Controllers, Services, DTOs, Validation, and Database Integration with TypeORM.
@@ -18,7 +18,7 @@ This project demonstrates NestJS fundamentals like Modules, Controllers, Service
 ## Project Structure
 
 voting-app/
-├─ Backend/
+├─ backend/
 │  ├─ src/
 │  │  ├─ candidates/
 │  │  │  ├─ dto/
@@ -34,7 +34,7 @@ voting-app/
 │  ├─ .env
 │  ├─ package.json
 │  └─ tsconfig.json
-├─ Frontend/
+├─ frontend/
 
 
 
