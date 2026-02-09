@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import VotingGrid from "./components/VotingGrid";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [candidates, setCandidates] = useState([
+    { id: 1, name: "Ram Sharma", party: "Democratic Party" },
+    { id: 2, name: "Ramesh Yadav", party: "Public Party" },
+    { id: 3, name: "Hari Kumar", party: "Independent Party" },
+  ]);
+
+  const [message, setMessage] = useState("");
+
+  const handleVote = (candidateName) => {
+    setMessage(`Thank you for voting for ${candidateName}!`);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ padding: "20px" }}>
+      <h1> Voter Interface</h1>
+
+      <VotingGrid candidates={candidates} onVote={handleVote} />
+
+      {message && <h2 style={{ color: "black" }}>{message}</h2>}
+    </div>
+  );
 }
 
-export default App
+export default App;
