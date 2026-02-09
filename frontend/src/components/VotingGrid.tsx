@@ -1,6 +1,17 @@
 import CandidateCard from "./CandidateCard";
 import "./VotingGrid.css";
-function VotingGrid({ candidates, onVote }) {
+interface Candidate {
+  id: number;
+  name: string;
+  party: string;
+}
+
+interface VotingGridProps {
+  candidates: Candidate[];
+  onVote: (candidateName: string) => void;
+}
+
+function VotingGrid({ candidates, onVote }: VotingGridProps) {
   return (
     <div className="voting-grid">
       {candidates.map((candidate) => (
